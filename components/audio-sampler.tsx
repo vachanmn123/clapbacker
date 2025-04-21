@@ -13,8 +13,6 @@ export default function AudioSampler() {
   const [audioData, setAudioData] = useState<Float32Array | null>(null);
   const [volume, setVolume] = useState(0);
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
-  const [audioSource, setAudioSource] =
-    useState<MediaStreamAudioSourceNode | null>(null);
   const [availableSources, setAvailableSources] = useState<MediaDeviceInfo[]>(
     []
   );
@@ -75,7 +73,6 @@ export default function AudioSampler() {
       source.connect(analyzerNode);
 
       setAudioContext(context);
-      setAudioSource(source);
       setAnalyzer(analyzerNode);
 
       return true;
@@ -110,7 +107,6 @@ export default function AudioSampler() {
       audioContext.close();
       setAudioContext(null);
     }
-    setAudioSource(null);
     setAnalyzer(null);
     setAudioData(null);
     setVolume(0);
